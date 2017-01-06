@@ -79,8 +79,13 @@ function youtube_videos(state = { videos: [] }, action) {
 
 function auth_keys(keys = {}, action) {
   switch (action.type) {
-    case CONSTANTS.SET_KEYS:
-    return Object.assign({}, keys);
+    case CONSTANTS.RETRIEVE_KEYS:
+    case CONSTANTS.GET_KEYS_SUCCESS:
+    case CONSTANTS.GET_KEYS_FAIL:
+    return Object.assign(keys, {
+      spotify: action.spotify || keys.spotify,
+      youtube: action.youtube || keys.youtube
+    });
     
     default:
       return keys;

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { spotifyActions, youtubeActions } from './../actions';
+import { spotifyActions, youtubeActions, keysActions } from './../actions';
 
 import Tile from '../components/Tile';
 import Tiles from '../components/Tiles';
@@ -42,6 +42,12 @@ class App extends Component {
         type: CONSTANTS.RETRIEVE_YOUTUBE_VIDEOS,
         access_token: this.props.auth_keys.youtube.access_token
       }));
+    }
+  }
+  
+  componentWillMount() {
+    if (!this.props.auth_keys.spotify || !this.props.auth_keys.youtube) {
+      this.props.dispatch(keysActions.getData(this.props.auth_keys));
     }
   }
 

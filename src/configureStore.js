@@ -11,14 +11,6 @@ const preloadedState = {
   }
 };
 
-if (!preloadedState.auth_keys.spotify) {
-  location.href = 'https://spotitube-kconst.c9users.io:8080/login_spotify';
-}
-
-if (!preloadedState.auth_keys.youtube) {
-  location.href = 'https://spotitube-kconst.c9users.io:8080/login_youtube';
-}
-
 const loggerMiddleware = createLogger();
 
 export default function configureStore() {
