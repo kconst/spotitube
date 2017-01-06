@@ -3,6 +3,10 @@
   margin: auto;
   text-align: center;
 
+  button {
+    display: block;
+  }
+
   input {
     margin-top: 10px;
     border-color: dodgerblue;
@@ -27,5 +31,19 @@
     width: 30px;
     display: inline-block;
     margin-bottom: -10px;
+  }
+  
+  .Album {
+    display: inline-block;
+    
+    select {
+      width: 400px;
+      height: 275px;
+      margin: 1.2%;
+    }
+    
+    .Tile {
+      min-height: 275px;
+    }
   }
 }

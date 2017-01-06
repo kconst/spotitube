@@ -9,6 +9,7 @@ export default class Tiles extends Component {
         if (this.props.data.length > 0) {
           return this.props.data.map((tile, i) =>
             <Tile
+              select={ this.props.select }
               key={ i }
               { ...tile }
             />
@@ -22,9 +23,6 @@ export default class Tiles extends Component {
   }
 }
 
-/*Tiles.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  }).isRequired).isRequired
-};*/
+Tiles.propTypes = {
+  data: PropTypes.array.isRequired
+};

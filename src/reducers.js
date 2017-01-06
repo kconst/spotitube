@@ -28,6 +28,23 @@ function results(list = [], action) {
   }
 }*/
 
+function spotify_playlist(list = [], action) {
+  switch (action.type) {
+    case CONSTANTS.RETRIEVE_SPOTIFY_PLAYLIST:
+    case CONSTANTS.RECEIVE_SPOTIFY_PLAYLIST_FAIL:
+    case CONSTANTS.RECEIVE_SPOTIFY_PLAYLIST_SUCCESS:
+      return Object.assign({}, {
+        loading: action.loading,
+        id: action.id,
+        playlist: action.playlist,
+        type: action.type
+      });
+
+    default:
+      return list;
+  }
+}
+
 function spotify_playlists(list = [], action) {
   switch (action.type) {
     case CONSTANTS.RETRIEVE_SPOTIFY_PLAYLISTS:
@@ -73,6 +90,7 @@ function auth_keys(keys = {}, action) {
 const rootReducer = combineReducers({
   auth_keys,
   spotify_playlists,
+  spotify_playlist,
   youtube_videos
 });
 
