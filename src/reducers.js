@@ -1,33 +1,6 @@
 import { combineReducers } from 'redux';
 import * as CONSTANTS from './constants.js'
 
-/*function searchQuery(state = {}, action) {
-  switch (action.type) {
-    case RECEIVE_ARTISTS_FAIL:
-    case RECEIVE_ARTISTS_SUCCESS:
-    case SEARCH_ARTIST:
-      return Object.assign({}, {
-        loading: action.loading,
-        query: action.query || state.query,
-        type: action.type
-      });
-
-    default:
-      return state;
-  }
-}
-
-function results(list = [], action) {
-  switch (action.type) {
-    case CONSTANTS.RECEIVE_ARTISTS_FAIL:
-    case CONSTANTS.RECEIVE_ARTISTS_SUCCESS:
-      return action.results.slice();
-
-    default:
-      return list;
-  }
-}*/
-
 function spotify_playlist(state = { id: null }, action) {
   switch (action.type) {
     case CONSTANTS.INVALIDATE_SPOTIFY_PLAYLIST:
