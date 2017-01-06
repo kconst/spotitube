@@ -1,17 +1,17 @@
-function retrieve(query, error) {
+function retrieve(user) {
   return {
-    type: RETRIEVE_YOUTUBE_PLAYLISTS,
-    playlists: [],
+    type: RETRIEVE_YOUTUBE_VIDEOS,
+    videos: [],
     loading: true,
-    error: error,
+    user,
     timestamp: Date.now()
   }
 }
 
 function fail(query, error) {
   return {
-    type: RECEIVE_YOUTUBE_PLAYLISTS_FAIL,
-    playlists: [],
+    type: RECEIVE_YOUTUBE_VIDEOS_FAIL,
+    videos: [],
     loading: false,
     error: error,
     timestamp: Date.now()
@@ -20,17 +20,17 @@ function fail(query, error) {
 
 function success(query, json) {
   return {
-    type: RECEIVE_YOUTUBE_PLAYLISTS_SUCCESS,
+    type: RECEIVE_YOUTUBE_VIDEOS_SUCCESS,
     loading: false,
-    playlists: json,
+    videos: json,
     timestamp: Date.now()
   }
 }
 
-function get(user, token) {
+function getVideos(token, user = 'kconst') {
   return function (dispatch) {
     // set the search value
-    // dispatch(searchArtist(artist));
+    dispatch(retrieve(user));
 
     return fetch(`//api.youtube.com/v1/users/${user}/playlists`)
       .then(response => response.json())
@@ -45,9 +45,9 @@ function get(user, token) {
   }
 }
 
-export default {
+export {
     retrieve,
     fail,
     success,
-    get
+    getVideos
 };

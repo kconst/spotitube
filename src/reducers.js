@@ -51,7 +51,7 @@ function youtube_videos(list = [], action) {
     case CONSTANTS.RECEIVE_YOUTUBE_VIDEOS_SUCCESS:
       return Object.assign({}, {
         loading: action.loading,
-        playlists: action.playlists.slice(),
+        videos: action.videos.slice(),
         type: action.type
       });
 

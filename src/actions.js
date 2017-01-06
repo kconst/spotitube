@@ -1,9 +1,12 @@
 import fetch from 'isomorphic-fetch';
 
-import './constants.js';
-
 import * as spotifyActions from './actions/spotify_actions.js';
 import * as youtubeActions from './actions/youtube_actions.js';
+
+export {
+  spotifyActions,
+  youtubeActions
+}
 
 /*export const SEARCH_ARTIST = 'SEARCH_ARTIST';
 export const RECEIVE_ARTISTS_FAIL = 'RECEIVE_ARTISTS_FAIL';

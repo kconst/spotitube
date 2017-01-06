@@ -2,11 +2,11 @@ import React, { PropTypes, Component } from 'react';
 
 export default class Tile extends Component {
   render() {
-    const { name, description, image } = this.props;
+    const { name, description, images } = this.props;
 
     return (
       <li className="Tile">
-        <img src={ image } alt={ name }/>
+        <img src={ images[0] && images[0].url } alt={ name }/>
         <h2>
           { name }
         </h2>

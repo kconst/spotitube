@@ -22,9 +22,9 @@ export default class Tiles extends Component {
   }
 }
 
-Tiles.propTypes = {
+/*Tiles.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
   }).isRequired).isRequired
-};
+};*/

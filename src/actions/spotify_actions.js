@@ -1,16 +1,18 @@
-function retrieve(query, error) {
+import * as CONSTANTS from './../constants.js';
+
+function retrieve(user) {
   return {
-    type: RETRIEVE_SPOTIFY_PLAYLISTS,
+    type: CONSTANTS.RETRIEVE_SPOTIFY_PLAYLISTS,
+    user,
     playlists: [],
     loading: true,
-    error: error,
     timestamp: Date.now()
   }
 }
 
 function fail(query, error) {
   return {
-    type: RECEIVE_SPOTIFY_PLAYLISTS_FAIL,
+    type: CONSTANTS.RECEIVE_SPOTIFY_PLAYLISTS_FAIL,
     playlists: [],
     loading: false,
     error: error,
@@ -20,22 +22,21 @@ function fail(query, error) {
 
 function success(query, json) {
   return {
-    type: RECEIVE_SPOTIFY_PLAYLISTS_SUCCESS,
+    type: CONSTANTS.RECEIVE_SPOTIFY_PLAYLISTS_SUCCESS,
     loading: false,
-    playlists: json,
+    playlists: json.items,
     timestamp: Date.now()
   }
 }
 
-function get(user, token) {
+function getPlaylists(access_token, user = 'kconst') {
   return function (dispatch) {
     // set the search value
-    // dispatch(searchArtist(artist));
+    dispatch(retrieve(user));
 
-    return fetch(`//api.spotify.com/v1/users/${user}/playlists`)
+    return fetch(`//api.spotify.com/v1/users/${user}/playlists`, { headers : { 'Authorization': 'Bearer ' + access_token } })
       .then(response => response.json())
       .then(json => {
-        debugger;
           return dispatch(success(user, json));
         },
         error => {
@@ -45,9 +46,9 @@ function get(user, token) {
   }
 }
 
-export default {
+export {
     retrieve,
     fail,
     success,
-    get
+    getPlaylists
 };
