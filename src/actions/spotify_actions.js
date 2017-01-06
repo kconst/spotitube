@@ -1,5 +1,15 @@
 import * as CONSTANTS from './../constants.js';
 
+function invalidate() {
+  return {
+      type: CONSTANTS.INVALIDATE_SPOTIFY_PLAYLIST,
+      id: null,
+      playlist: null,
+      loading: false,
+      timestamp: Date.now()
+    }
+}
+
 function retrieve(args) {
   if (args.type === CONSTANTS.RETRIEVE_SPOTIFY_PLAYLIST) {
     return {
@@ -85,7 +95,6 @@ function getData(args) {
             }));
           },
           error => {
-            debugger;
             return dispatch(fail({
               type: args.type,
               id: args.id,
@@ -111,7 +120,6 @@ function getData(args) {
             }));
           },
           error => {
-            debugger;
             return dispatch(fail({
               type: args.type,
               playlists: [],
@@ -123,8 +131,9 @@ function getData(args) {
 }
 
 export {
-    retrieve,
-    fail,
-    success,
-    getData
+  invalidate,
+  retrieve,
+  fail,
+  success,
+  getData
 };

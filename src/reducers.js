@@ -28,8 +28,9 @@ function results(list = [], action) {
   }
 }*/
 
-function spotify_playlist(list = [], action) {
+function spotify_playlist(state = { id: null }, action) {
   switch (action.type) {
+    case CONSTANTS.INVALIDATE_SPOTIFY_PLAYLIST:
     case CONSTANTS.RETRIEVE_SPOTIFY_PLAYLIST:
     case CONSTANTS.RECEIVE_SPOTIFY_PLAYLIST_FAIL:
     case CONSTANTS.RECEIVE_SPOTIFY_PLAYLIST_SUCCESS:
@@ -41,11 +42,11 @@ function spotify_playlist(list = [], action) {
       });
 
     default:
-      return list;
+      return state;
   }
 }
 
-function spotify_playlists(list = [], action) {
+function spotify_playlists(state = {}, action) {
   switch (action.type) {
     case CONSTANTS.RETRIEVE_SPOTIFY_PLAYLISTS:
     case CONSTANTS.RECEIVE_SPOTIFY_PLAYLISTS_FAIL:
@@ -57,7 +58,7 @@ function spotify_playlists(list = [], action) {
       });
 
     default:
-      return list;
+      return state;
   }
 }
 

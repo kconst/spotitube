@@ -54,7 +54,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={ this.getPlaylists.bind(this) }>Get Playlists!</button>
+        { (() => {
+          if (!this.props.spotify_playlist.id) {
+            return <button onClick={ this.getPlaylists.bind(this) }>Get Playlists</button>
+          } else {
+            return <button onClick={ () => this.props.dispatch(spotifyActions.invalidate()) }>Back to Playlists</button>
+          }
+        })() }
         
         { (() => {
           if (this.props.spotify_playlist.playlist && this.props.spotify_playlist.playlist.items.length > 0) {
