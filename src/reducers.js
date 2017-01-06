@@ -61,19 +61,19 @@ function spotify_playlists(list = [], action) {
   }
 }
 
-function youtube_videos(list = [], action) {
+function youtube_videos(state = { videos: [] }, action) {
   switch (action.type) {
     case CONSTANTS.RETRIEVE_YOUTUBE_VIDEOS:
     case CONSTANTS.RECEIVE_YOUTUBE_VIDEOS_FAIL:
     case CONSTANTS.RECEIVE_YOUTUBE_VIDEOS_SUCCESS:
       return Object.assign({}, {
         loading: action.loading,
-        videos: action.videos.slice(),
+        videos: action.videos.items.slice(),
         type: action.type
       });
 
     default:
-      return list;
+      return state;
   }
 }
 

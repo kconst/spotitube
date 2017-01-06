@@ -1,46 +1,52 @@
-function retrieve(user) {
+import * as CONSTANTS from './../constants.js';
+
+function retrieve(query) {
   return {
-    type: RETRIEVE_YOUTUBE_VIDEOS,
-    videos: [],
+    type: CONSTANTS.RETRIEVE_YOUTUBE_VIDEOS,
+    videos: { items: [] },
     loading: true,
-    user,
+    query,
     timestamp: Date.now()
   }
 }
 
-function fail(query, error) {
+function fail(args) {
   return {
-    type: RECEIVE_YOUTUBE_VIDEOS_FAIL,
-    videos: [],
+    type: CONSTANTS.RECEIVE_YOUTUBE_VIDEOS_FAIL,
+    videos: { items: [] },
     loading: false,
-    error: error,
+    error: args.error,
     timestamp: Date.now()
   }
 }
 
-function success(query, json) {
+function success(args) {
   return {
-    type: RECEIVE_YOUTUBE_VIDEOS_SUCCESS,
+    type: CONSTANTS.RECEIVE_YOUTUBE_VIDEOS_SUCCESS,
     loading: false,
-    videos: json,
+    videos: args.videos,
     timestamp: Date.now()
   }
 }
 
-function getVideos(token, user = 'kconst') {
+function getVideos(args) {
   return function (dispatch) {
     // set the search value
-    dispatch(retrieve(user));
+    dispatch(retrieve(args.query));
 
-    return fetch(`//api.youtube.com/v1/users/${user}/playlists`)
+    return fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${args.query}`, { headers : { 'Authorization': 'Bearer ' + args.access_token } })
       .then(response => response.json())
       .then(json => {
-        debugger;
-          return dispatch(success(user, json));
+          return dispatch(success({
+            query: args.query,
+            videos: json
+          }));
         },
         error => {
           debugger;
-          return dispatch(fail([], error));
+          return dispatch(fail({
+            error
+          }));
         });
   }
 }

@@ -5,6 +5,7 @@ import { spotifyActions, youtubeActions } from './../actions';
 import Tile from '../components/Tile';
 import Tiles from '../components/Tiles';
 import TrackSelect from '../components/TrackSelect';
+import YouTubeClip from '../components/YouTubeClip';
 
 import * as CONSTANTS from './../constants.js';
 
@@ -36,7 +37,7 @@ class App extends Component {
   
   selectTrack() {
     return track => {
-      this.props.dispatch(spotifyActions.getData({
+      this.props.dispatch(youtubeActions.getVideos({
         query: track,
         type: CONSTANTS.RETRIEVE_YOUTUBE_VIDEOS,
         access_token: this.props.auth_keys.youtube.access_token
@@ -54,6 +55,7 @@ class App extends Component {
             return <section className="Album">
               <Tile images={ this.props.spotify_playlist.playlist.images } name={ this.props.spotify_playlist.playlist.name }/>
               <TrackSelect select={ this.selectTrack() } tracks={ this.props.spotify_playlist.playlist.items }/>
+              <YouTubeClip data={ this.props.youtube_videos }/>
             </section>;
           } else if (this.props.spotify_playlists.playlists && this.props.spotify_playlists.playlists.length > 0) {
             return <Tiles select={ this.selectPlaylist() } data={ this.props.spotify_playlists.playlists }/>

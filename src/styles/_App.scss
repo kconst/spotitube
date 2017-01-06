@@ -40,10 +40,18 @@
       width: 400px;
       height: 275px;
       margin: 1.2%;
+      margin-right: 0;
+      float: right;
     }
     
     .Tile {
       min-height: 275px;
+      margin-left: 0;
+    }
+    
+    .YouTubeClip {
+      height: 432px;
+      width: 100%;
     }
   }
 }
