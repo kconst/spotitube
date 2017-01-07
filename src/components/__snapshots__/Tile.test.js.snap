@@ -1,0 +1,12 @@
+exports[`test snapshot comparison 1`] = `
+<li
+  className="Tile"
+  onClick={[Function]}>
+  <img
+    alt="Trivium"
+    src="https://i.scdn.co/image/5194f3860bd53aa613edcfc5ef09a995b599f049" />
+  <h2>
+    Trivium
+  </h2>
+</li>
+`;

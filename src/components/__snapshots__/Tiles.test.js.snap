@@ -1,0 +1,24 @@
+exports[`test snapshot comparison 1`] = `
+<ul>
+  <li
+    className="Tile"
+    onClick={[Function]}>
+    <img
+      alt="St. Lucia – Spotify Sessions"
+      src="https://i.scdn.co/image/68282faa891fba544f90e32cfcee6e23ff2b6d1c" />
+    <h2>
+      St. Lucia – Spotify Sessions
+    </h2>
+  </li>
+  <li
+    className="Tile"
+    onClick={[Function]}>
+    <img
+      alt="Megadeth – ENDGAME"
+      src="https://i.scdn.co/image/ed46b9b221b4e19da42c4adf8f4db6c649339fe9" />
+    <h2>
+      Megadeth – ENDGAME
+    </h2>
+  </li>
+</ul>
+`;
