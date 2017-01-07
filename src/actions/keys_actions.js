@@ -27,17 +27,18 @@ function success(args) {
     timestamp: Date.now()
   }
 }
+import network from '../network.json';
 
 function getData(args) {
   return function (dispatch) {
     dispatch(retrieve());
 
     if (!args.spotify) {
-      location.href = 'https://spotitube-kconst.c9users.io:8080/login_spotify';
+      location.href = network.server + '/login_spotify';
     }
     
     if (!args.youtube) {
-      location.href = 'https://spotitube-kconst.c9users.io:8080/login_youtube';
+      location.href = network.server + '/login_youtube';
     }
 
     return dispatch(success);
